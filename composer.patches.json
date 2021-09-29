@@ -2,6 +2,6 @@
     "patches": {
         "drupal/core": {
         "themable_forms Claro": "https://www.drupal.org/files/issues/2021-03-15/claro_theme_is_incompatible_with_the_themable_forms_module-3203745-1.patch"
-        }
+        },
     }
 }
