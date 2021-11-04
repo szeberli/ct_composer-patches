@@ -9,5 +9,6 @@
         },
         "drupal/paragraphs": {
             "fix Add Above Button": "https://www.drupal.org/files/issues/2020-08-19/paragraphs-better_selector_clearfix-gin-2954224-10.patch"
+        }
     }
 }
