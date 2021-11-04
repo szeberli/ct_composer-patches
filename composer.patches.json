@@ -6,6 +6,8 @@
         "drupal/core": {
             "themable_forms Claro": "https://www.drupal.org/files/issues/2021-03-15/claro_theme_is_incompatible_with_the_themable_forms_module-3203745-1.patch",
             "Drag-and-Drop for Gin": "https://www.drupal.org/files/issues/2020-08-13/3099026-17.patch"
-        }
+        },
+        "drupal/paragraphs": {
+            "fix Add Above Button": "https://www.drupal.org/files/issues/2020-08-19/paragraphs-better_selector_clearfix-gin-2954224-10.patch"
     }
 }
