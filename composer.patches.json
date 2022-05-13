@@ -8,6 +8,12 @@
         },
         "drupal/fieldblock": {
             "Can't access block node settings": "https://www.drupal.org/files/issues/2020-10-12/cant_access_settings-3164381-3.patch"
+        },
+        "drupal/google_analytics": {
+            "Deprecated function: Return type of ": "https://www.drupal.org/files/issues/2022-02-24/google_analytics-php81_deprecation-3258588-9.patch"
+        },
+        "drupal/webform": {
+            "Deprecated function: strpos(): Passing null to parameter #1 ($haystack) ": "https://www.drupal.org/files/issues/2022-05-11/webform-strpos-php81-webform-requirements-3279930-2.patch"
         }
     }
 }
