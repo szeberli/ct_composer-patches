@@ -1,0 +1,40 @@
+diff --git a/web/themes/custom/verwaltung/css/c-default.css b/web/themes/custom/verwaltung/css/c-default.css
+index 417450c..af9cb78 100755
+--- a/web/themes/custom/verwaltung/css/c-default.css
++++ b/web/themes/custom/verwaltung/css/c-default.css
+@@ -1 +1 @@
+-.button-animation:hover{transform:scale(1.01);-webkit-transform:scale(1.01)}.button-animation:active{transform:scale(1);-webkit-transform:scale(1)}@media only screen and (max-width: 768px){.button-animation:hover{transform:none;-webkit-transform:none}.button-animation:active{transform:none;-webkit-transform:none}}@media only screen and (max-width: 768px){.ds-2col>.group-left,.ds-2col>.group-right{width:100%;display:block}}iframe{max-width:100%}.form-actions a#edit-delete.button.button--danger,.form-actions #edit-actions-delete{box-sizing:border-box;display:inline-block;position:relative;text-align:center;line-height:normal;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;padding:4px 1.5em;border-radius:20em;text-decoration:none;text-shadow:0 1px #fff9;font-size:14px;font-size:.875rem;-webkit-transition:all .1s;transition:all .1s;border:1px solid red;background-color:#FF7878;background-image:-webkit-linear-gradient(#FF7878, #FF7878);background-image:-o-linear-gradient(#FF7878, #FF7878);background-image:linear-gradient(#FF7878, #FF7878);color:#fff;text-shadow:0 1px #00000080;font-weight:700;-webkit-font-smoothing:antialiased}.form-actions a#edit-delete.button.button--danger:hover,.form-actions #edit-actions-delete:hover{background-color:#ff5454;background-image:-webkit-linear-gradient(#ff5454, #ff5454);background-image:-o-linear-gradient(#ff5454, #ff5454);background-image:linear-gradient(#ff5454, #ff5454)}.toolbar-icon-zeberliedvinfo-admin::before{background-image:url(../img/icons/787878/zeberliedv.svg)}.toolbar-icon-zeberliedvinfo-struktur-admin::before{background-image:url(../img/icons/787878/orgchart.svg)}/*# sourceMappingURL=./c-default.css.map */
+\ No newline at end of file
++.button-animation:hover{transform:scale(1.01);-webkit-transform:scale(1.01)}.button-animation:active{transform:scale(1);-webkit-transform:scale(1)}@media only screen and (max-width: 768px){.button-animation:hover{transform:none;-webkit-transform:none}.button-animation:active{transform:none;-webkit-transform:none}}@media only screen and (max-width: 768px){.ds-2col>.group-left,.ds-2col>.group-right{width:100%;display:block}}iframe{max-width:100%}.form-actions a#edit-delete.button.button--danger,.form-actions #edit-actions-delete{box-sizing:border-box;display:inline-block;position:relative;text-align:center;line-height:normal;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;padding:4px 1.5em;border-radius:20em;text-decoration:none;text-shadow:0 1px #fff9;font-size:14px;font-size:.875rem;-webkit-transition:all .1s;transition:all .1s;border:1px solid red;background-color:#FF7878;background-image:-webkit-linear-gradient(#FF7878, #FF7878);background-image:-o-linear-gradient(#FF7878, #FF7878);background-image:linear-gradient(#FF7878, #FF7878);color:#fff;text-shadow:0 1px #00000080;font-weight:700;-webkit-font-smoothing:antialiased}.form-actions a#edit-delete.button.button--danger:hover,.form-actions #edit-actions-delete:hover{background-color:#ff5454;background-image:-webkit-linear-gradient(#ff5454, #ff5454);background-image:-o-linear-gradient(#ff5454, #ff5454);background-image:linear-gradient(#ff5454, #ff5454)}.toolbar-icon-zeberliedvinfo-admin::before{background-image:url(../img/icons/787878/zeberliedv.svg)}.toolbar-icon-zeberliedvinfo-struktur-admin::before{background-image:url(../img/icons/787878/orgchart.svg)}.warmer-settings .chosen-container .chosen-drop{position:unset;z-index:2021}.warmer-settings .chosen-container .chosen-results{max-height:540px}/*# sourceMappingURL=./c-default.css.map */
+\ No newline at end of file
+diff --git a/web/themes/custom/verwaltung/css/c-default.css.map b/web/themes/custom/verwaltung/css/c-default.css.map
+index f2abf12..b77df91 100755
+--- a/web/themes/custom/verwaltung/css/c-default.css.map
++++ b/web/themes/custom/verwaltung/css/c-default.css.map
+@@ -1 +1 @@
+-{"version":3,"sources":["../less/b-mixins.less","../less/c-default.less"],"names":[],"mappings":"AAwCI,iBAAC,OACG,UAAW,WAAX,CACA,kBAAmB,YAEvB,iBAAC,QAEG,UAAW,QAAX,CACA,kBAAmB,SAEvB,0CACI,iBAAC,OAEG,cAAA,CACA,uBAEJ,iBAAC,QACG,cAAA,CACA,wBC7CZ,0CACI,QAAS,aAAe,QAAS,cAC7B,UAAA,CACA,eAOR,OACI,eAKJ,aACI,EAAC,YAAY,OAAO,gBADxB,aACyC,sBACjC,qBAAA,CACA,oBAAA,CACA,iBAAA,CACA,iBAAA,CACA,kBAAA,CACA,cAAA,CACA,uBAAA,CACA,oBAAA,CACA,iBAAA,CACA,kBAAA,CACA,oBAAA,CACA,uBAAA,CACA,cAAA,CACA,iBAAA,CACA,0BAAA,CACA,kBAAA,CAEA,oBAAA,CACA,wBAAA,CACA,iBAAkB,yCAAlB,CACA,iBAAkB,oCAAlB,CACA,iBAAkB,iCAAlB,CACA,UAAA,CACA,2BAAA,CACA,eAAA,CACA,mCACA,aA3BJ,EAAC,YAAY,OAAO,eA2Bf,OAAD,aA3BiC,qBA2BhC,OACG,wBAAA,CACA,iBAAkB,yCAAlB,CACA,iBAAkB,oCAAlB,CACA,iBAAkB,kCAQ9B,kCAAkC,SAC9B,yDAEJ,2CAA2C,SACvC"}
+\ No newline at end of file
++{"version":3,"sources":["../less/b-mixins.less","../less/c-default.less"],"names":[],"mappings":"AAwCI,iBAAC,OACG,UAAW,WAAX,CACA,kBAAmB,YAEvB,iBAAC,QAEG,UAAW,QAAX,CACA,kBAAmB,SAEvB,0CACI,iBAAC,OAEG,cAAA,CACA,uBAEJ,iBAAC,QACG,cAAA,CACA,wBC7CZ,0CACI,QAAS,aAAe,QAAS,cAC7B,UAAA,CACA,eAOR,OACI,eAKJ,aACI,EAAC,YAAY,OAAO,gBADxB,aACyC,sBACjC,qBAAA,CACA,oBAAA,CACA,iBAAA,CACA,iBAAA,CACA,kBAAA,CACA,cAAA,CACA,uBAAA,CACA,oBAAA,CACA,iBAAA,CACA,kBAAA,CACA,oBAAA,CACA,uBAAA,CACA,cAAA,CACA,iBAAA,CACA,0BAAA,CACA,kBAAA,CAEA,oBAAA,CACA,wBAAA,CACA,iBAAkB,yCAAlB,CACA,iBAAkB,oCAAlB,CACA,iBAAkB,iCAAlB,CACA,UAAA,CACA,2BAAA,CACA,eAAA,CACA,mCACA,aA3BJ,EAAC,YAAY,OAAO,eA2Bf,OAAD,aA3BiC,qBA2BhC,OACG,wBAAA,CACA,iBAAkB,yCAAlB,CACA,iBAAkB,oCAAlB,CACA,iBAAkB,kCAQ9B,kCAAkC,SAC9B,yDAEJ,2CAA2C,SACvC,uDAIJ,gBACI,kBACI,cACI,cAAA,CACA,aAJZ,gBACI,kBAKI,iBACI"}
+\ No newline at end of file
+diff --git a/web/themes/custom/verwaltung/less/c-default.less b/web/themes/custom/verwaltung/less/c-default.less
+index b8cae67..205ee33 100755
+--- a/web/themes/custom/verwaltung/less/c-default.less
++++ b/web/themes/custom/verwaltung/less/c-default.less
+@@ -72,3 +72,16 @@ iframe {
+ .toolbar-icon-zeberliedvinfo-struktur-admin::before {
+     background-image: url(../img/icons/787878/orgchart.svg);
+ }
++
++// Korrektur für Warmer Dropdown
++.warmer-settings {
++    .chosen-container {
++        .chosen-drop  {
++            position: unset;
++            z-index: 2021;
++        }
++        .chosen-results {
++            max-height: 540px;
++          }
++    }
++}
+\ No newline at end of file
