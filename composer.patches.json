@@ -17,8 +17,9 @@
         },
         "drupal/image_widget_crop": {
             "Crop widget not adjusting crop box when crop is applied": "https://www.drupal.org/files/issues/2021-06-09/crop_widget_not_adjusting_to_existing_crop-3214365-9.patch"
-        }
+        },
         "drupal/verwaltung": {
             "bugfix warmer -> chosen module": "https://raw.githubusercontent.com/szeberli/ct_composer-patches/main/chosen_patch.patch"
+        }
     }
 }
