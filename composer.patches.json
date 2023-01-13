@@ -9,9 +9,6 @@
         "drupal/fieldblock": {
             "Can't access block node settings": "https://www.drupal.org/files/issues/2020-10-12/cant_access_settings-3164381-3.patch"
         },
-        "drupal/webform": {
-          "Deprecated function: strpos(): Passing null to parameter #1 ($haystack) ": "https://www.drupal.org/files/issues/2022-05-11/webform-strpos-php81-webform-requirements-3279930-2.patch"
-        },
         "drupal/image_widget_crop": {
             "Crop widget not adjusting crop box when crop is applied": "https://www.drupal.org/files/issues/2021-06-09/crop_widget_not_adjusting_to_existing_crop-3214365-9.patch"
         },
