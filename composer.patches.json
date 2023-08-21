@@ -12,8 +12,8 @@
         "drupal/conditional_fields": {
           "'Controlled by' fields inside a Paragraph don't work": "https://www.drupal.org/files/issues/2022-06-30/conditional-fields-4x--v4.patch"
         },
-        "drupal/field_css" : {
-          "Notice: Undefined index: field_MY_css in..." : "https://www.drupal.org/files/issues/2023-04-07/3280478-6.patch"
+        "drupal/video_embed_field" : {
+            "Youtube no-cockie URL" : "https://raw.githubusercontent.com/szeberli/ct_composer-patches/main/video_embed_field-youtube-nocookie_v1.patch"
         }
     }
 }
