@@ -1,0 +1,354 @@
+diff --git a/modules/video_embed_media/tests/src/Functional/BundleTest.php b/modules/video_embed_media/tests/src/Functional/BundleTest.php
+index 23071d8..9536a97 100644
+--- a/modules/video_embed_media/tests/src/Functional/BundleTest.php
++++ b/modules/video_embed_media/tests/src/Functional/BundleTest.php
+@@ -60,7 +60,7 @@ class BundleTest extends MediaFunctionalTestBase {
+     $this->drupalGet('media/add/video_bundle');
+     $this->submitForm([
+       'name[0][value]' => 'Drupal video!',
+-      'field_media_video_embed_field[0][value]' => 'https://www.youtube.com/watch?v=XgYu7-DQjDQ',
++      'field_media_video_embed_field[0][value]' => 'https://www.youtube-nocookie.com/watch?v=XgYu7-DQjDQ',
+     ], 'Save');
+     // We should see the video thumbnail on the media page.
+     $this->assertStringContainsString('video_thumbnails/XgYu7-DQjDQ.jpg', $this->getSession()->getPage()->getHtml());
+diff --git a/modules/video_embed_media/tests/src/Kernel/DefaultNameTest.php b/modules/video_embed_media/tests/src/Kernel/DefaultNameTest.php
+index 8bd73ce..9601617 100644
+--- a/modules/video_embed_media/tests/src/Kernel/DefaultNameTest.php
++++ b/modules/video_embed_media/tests/src/Kernel/DefaultNameTest.php
+@@ -45,7 +45,7 @@ class DefaultNameTest extends MediaKernelTestBase {
+   public function defaultNameTestCases() {
+     return [
+       'YouTube' => [
+-        'https://www.youtube.com/watch?v=gnERPdAiuSo',
++        'https://www.youtube-nocookie.com/watch?v=gnERPdAiuSo',
+         'YouTube Video (gnERPdAiuSo)',
+       ],
+       'Vimeo' => [
+diff --git a/modules/video_embed_media/tests/src/Kernel/ProvidedFieldsTest.php b/modules/video_embed_media/tests/src/Kernel/ProvidedFieldsTest.php
+index 8b349fa..6436641 100644
+--- a/modules/video_embed_media/tests/src/Kernel/ProvidedFieldsTest.php
++++ b/modules/video_embed_media/tests/src/Kernel/ProvidedFieldsTest.php
+@@ -43,7 +43,7 @@ class ProvidedFieldsTest extends MediaKernelTestBase {
+   public function providedFieldsTestCases() {
+     return [
+       'Video ID (YouTube)' => [
+-        'https://www.youtube.com/watch?v=gnERPdAiuSo',
++        'https://www.youtube-nocookie.com/watch?v=gnERPdAiuSo',
+         'id',
+         'gnERPdAiuSo',
+       ],
+@@ -53,7 +53,7 @@ class ProvidedFieldsTest extends MediaKernelTestBase {
+         '153786080',
+       ],
+       'Video Source (YouTube)' => [
+-        'https://www.youtube.com/watch?v=gnERPdAiuSo',
++        'https://www.youtube-nocookie.com/watch?v=gnERPdAiuSo',
+         'source',
+         'youtube',
+       ],
+@@ -63,7 +63,7 @@ class ProvidedFieldsTest extends MediaKernelTestBase {
+         'vimeo',
+       ],
+       'Video Thumbnail (YouTube)' => [
+-        'https://www.youtube.com/watch?v=gnERPdAiuSo',
++        'https://www.youtube-nocookie.com/watch?v=gnERPdAiuSo',
+         'image_local_uri',
+         'public://video_thumbnails/gnERPdAiuSo.jpg',
+       ],
+diff --git a/modules/video_embed_wysiwyg/tests/src/FunctionalJavascript/EmbedDialogTest.php b/modules/video_embed_wysiwyg/tests/src/FunctionalJavascript/EmbedDialogTest.php
+index 7f87916..c775515 100644
+--- a/modules/video_embed_wysiwyg/tests/src/FunctionalJavascript/EmbedDialogTest.php
++++ b/modules/video_embed_wysiwyg/tests/src/FunctionalJavascript/EmbedDialogTest.php
+@@ -99,13 +99,13 @@ class EmbedDialogTest extends WebDriverTestBase {
+     $this->assertStringContainsString('http://example.com/', $this->getSession()->getPage()->getHtml());
+ 
+     // Submit a valid URL.
+-    $this->find('input[name="video_url"]')->setValue('https://www.youtube.com/watch?v=iaf3Sl2r3jE&t=1553s');
++    $this->find('input[name="video_url"]')->setValue('https://www.youtube-nocookie.com/watch?v=iaf3Sl2r3jE&t=1553s');
+     $this->find('button.form-submit')->click();
+     $this->assertSession()->assertWaitOnAjaxRequest();
+     // View the source of the ckeditor and find the output.
+     $this->find('.cke_button__source_label')->click();
+     $base_path = \Drupal::request()->getBasePath();
+-    $this->assertEquals('<p>{"preview_thumbnail":"' . rtrim($base_path, '/') . '/' . $this->publicFilesDirectory . '/styles/video_embed_wysiwyg_preview/public/video_thumbnails/iaf3Sl2r3jE.jpg","video_url":"https://www.youtube.com/watch?v=iaf3Sl2r3jE&amp;t=1553s","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (Responsive, autoplaying)."]}</p>', trim($this->getSession()->getPage()->find('css', '.cke_source')->getValue()));
++    $this->assertEquals('<p>{"preview_thumbnail":"' . rtrim($base_path, '/') . '/' . $this->publicFilesDirectory . '/styles/video_embed_wysiwyg_preview/public/video_thumbnails/iaf3Sl2r3jE.jpg","video_url":"https://www.youtube-nocookie.com/watch?v=iaf3Sl2r3jE&amp;t=1553s","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (Responsive, autoplaying)."]}</p>', trim($this->getSession()->getPage()->find('css', '.cke_source')->getValue()));
+   }
+ 
+   /**
+@@ -113,7 +113,7 @@ class EmbedDialogTest extends WebDriverTestBase {
+    */
+   public function testNestedMarkup() {
+     $nested_content = '<div class="nested-content">
+-<p>{"preview_thumbnail":"/thumb.jpg","video_url":"https://www.youtube.com/watch?v=iaf3Sl2r3jE","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (Responsive, autoplaying)."]}</p>
++<p>{"preview_thumbnail":"/thumb.jpg","video_url":"https://www.youtube-nocookie.com/watch?v=iaf3Sl2r3jE","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (Responsive, autoplaying)."]}</p>
+ </div>';
+     $node = $this->createNode([
+       'type' => 'page',
+diff --git a/modules/video_embed_wysiwyg/tests/src/Kernel/FilterTest.php b/modules/video_embed_wysiwyg/tests/src/Kernel/FilterTest.php
+index 41cdc17..8e499c9 100644
+--- a/modules/video_embed_wysiwyg/tests/src/Kernel/FilterTest.php
++++ b/modules/video_embed_wysiwyg/tests/src/Kernel/FilterTest.php
+@@ -46,8 +46,8 @@ class FilterTest extends KernelTestBase {
+   public function videoFilterTestCases() {
+     return [
+       'Standard embed code' => [
+-        '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://www.youtube.com/watch?v=uNRtZDAS0xI","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
+-        '<p>Content.</p><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/uNRtZDAS0xI?autoplay=1&amp;start=0&amp;rel=0"></iframe></div><p>More content.</p>',
++        '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://www.youtube-nocookie.com/watch?v=uNRtZDAS0xI","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
++        '<p>Content.</p><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="854" height="480" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube-nocookie.com/embed/uNRtZDAS0xI?autoplay=1&amp;start=0&amp;rel=0"></iframe></div><p>More content.</p>',
+       ],
+       'Embedded vimeo video' => [
+         '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://vimeo.com/18352872","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
+@@ -70,7 +70,7 @@ class FilterTest extends KernelTestBase {
+         FALSE,
+       ],
+       'Malformed JSON' => [
+-        '<p>Content.</p><p>{"preview_thumbnail":::"http://example.com/thumbnail.jpg","video_url":"https://www.youtube.com/watch?v=uNRtZDAS0xI","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
++        '<p>Content.</p><p>{"preview_thumbnail":::"http://example.com/thumbnail.jpg","video_url":"https://www.youtube-nocookie.com/watch?v=uNRtZDAS0xI","settings":{"responsive":1,"width":"854","height":"480","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
+         FALSE,
+       ],
+       'Partial keys' => [
+@@ -78,11 +78,11 @@ class FilterTest extends KernelTestBase {
+         FALSE,
+       ],
+       'XSS Width/Height' => [
+-        '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://www.youtube.com/watch?v=uNRtZDAS0xI","settings":{"responsive":1,"width":"\">test","height":"\">test","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
+-        '<p>Content.</p><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="&quot;&gt;test" height="&quot;&gt;test" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube.com/embed/uNRtZDAS0xI?autoplay=1&amp;start=0&amp;rel=0"></iframe></div><p>More content.</p>',
++        '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://www.youtube-nocookie.com/watch?v=uNRtZDAS0xI","settings":{"responsive":1,"width":"\">test","height":"\">test","autoplay":1},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
++        '<p>Content.</p><div class="video-embed-field-provider-youtube video-embed-field-responsive-video"><iframe width="&quot;&gt;test" height="&quot;&gt;test" frameborder="0" allowfullscreen="allowfullscreen" src="https://www.youtube-nocookie.com/embed/uNRtZDAS0xI?autoplay=1&amp;start=0&amp;rel=0"></iframe></div><p>More content.</p>',
+       ],
+       'Empty settings' => [
+-        '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://www.youtube.com/watch?v=uNRtZDAS0xI","settings":{},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
++        '<p>Content.</p><p>{"preview_thumbnail":"http://example.com/thumbnail.jpg","video_url":"https://www.youtube-nocookie.com/watch?v=uNRtZDAS0xI","settings":{},"settings_summary":["Embedded Video (854x480, autoplaying)."]}</p><p>More content.</p>',
+         FALSE,
+       ],
+     ];
+diff --git a/src/Plugin/video_embed_field/Provider/YouTube.php b/src/Plugin/video_embed_field/Provider/YouTube.php
+index 224edd2..a9d8071 100644
+--- a/src/Plugin/video_embed_field/Provider/YouTube.php
++++ b/src/Plugin/video_embed_field/Provider/YouTube.php
+@@ -21,7 +21,7 @@ class YouTube extends ProviderPluginBase {
+     $embed_code = [
+       '#type' => 'video_embed_iframe',
+       '#provider' => 'youtube',
+-      '#url' => sprintf('https://www.youtube.com/embed/%s', $this->getVideoId()),
++      '#url' => sprintf('https://www.youtube-nocookie.com/embed/%s', $this->getVideoId()),
+       '#query' => [
+         'autoplay' => $autoplay,
+         'start' => $this->getTimeIndex(),
+@@ -71,7 +71,7 @@ class YouTube extends ProviderPluginBase {
+    * {@inheritdoc}
+    */
+   public function getRemoteThumbnailUrl() {
+-    $url = 'http://img.youtube.com/vi/%s/%s.jpg';
++    $url = 'http://img.youtube-nocookie.com/vi/%s/%s.jpg';
+     $high_resolution = sprintf($url, $this->getVideoId(), 'maxresdefault');
+     $backup = sprintf($url, $this->getVideoId(), 'mqdefault');
+     try {
+diff --git a/src/Plugin/video_embed_field/Provider/YouTubePlaylist.php b/src/Plugin/video_embed_field/Provider/YouTubePlaylist.php
+index 1043c5a..e2d97c3 100644
+--- a/src/Plugin/video_embed_field/Provider/YouTubePlaylist.php
++++ b/src/Plugin/video_embed_field/Provider/YouTubePlaylist.php
+@@ -21,7 +21,7 @@ class YouTubePlaylist extends ProviderPluginBase {
+     return [
+       '#type' => 'video_embed_iframe',
+       '#provider' => 'youtube_playlist',
+-      '#url' => 'https://www.youtube.com/embed/videoseries',
++      '#url' => 'https://www.youtube-nocookie.com/embed/videoseries',
+       '#query' => [
+         'list' => $this->getVideoId(),
+       ],
+@@ -38,7 +38,7 @@ class YouTubePlaylist extends ProviderPluginBase {
+    * {@inheritdoc}
+    */
+   public function getRemoteThumbnailUrl() {
+-    return sprintf('http://img.youtube.com/vi/%s/hqdefault.jpg', static::getUrlComponent($this->getInput(), 'video_id'));
++    return sprintf('http://img.youtube-nocookie.com/vi/%s/hqdefault.jpg', static::getUrlComponent($this->getInput(), 'video_id'));
+   }
+ 
+   /**
+diff --git a/tests/src/Functional/FieldConfigurationTest.php b/tests/src/Functional/FieldConfigurationTest.php
+index e2f111f..af8e119 100644
+--- a/tests/src/Functional/FieldConfigurationTest.php
++++ b/tests/src/Functional/FieldConfigurationTest.php
+@@ -53,7 +53,7 @@ class FieldConfigurationTest extends BrowserTestBase {
+     ], t('Save settings'));
+     $this->assertSession()->pageTextContains('Could not find a video provider to handle the given URL.');
+     $this->submitForm([
+-      'default_value_input[field_video_embed][0][value]' => 'https://www.youtube.com/watch?v=XgYu7-DQjDQ',
++      'default_value_input[field_video_embed][0][value]' => 'https://www.youtube-nocookie.com/watch?v=XgYu7-DQjDQ',
+     ], t('Save settings'));
+     $this->assertSession()->pageTextContains('Saved Video Embed configuration.');
+   }
+diff --git a/tests/src/Kernel/ConstraintTest.php b/tests/src/Kernel/ConstraintTest.php
+index afa3fd6..224efb4 100644
+--- a/tests/src/Kernel/ConstraintTest.php
++++ b/tests/src/Kernel/ConstraintTest.php
+@@ -45,7 +45,7 @@ class ConstraintTest extends KernelTestBase {
+     $this->assertCount(1, $violations);
+     $this->assertInstanceOf(VideoEmbedConstraint::class, $violations[0]->getConstraint());
+ 
+-    $entity->{$this->fieldName}->value = 'https://youtube.com/watch?v=fdbFV_Wup-Ssw';
++    $entity->{$this->fieldName}->value = 'https://youtube-nocookie.com/watch?v=fdbFV_Wup-Ssw';
+     $violations = $entity->validate();
+     $this->assertCount(0, $violations);
+   }
+diff --git a/tests/src/Kernel/Drupal6EmfieldMigrationTest.php b/tests/src/Kernel/Drupal6EmfieldMigrationTest.php
+index c8ac14b..1afe011 100644
+--- a/tests/src/Kernel/Drupal6EmfieldMigrationTest.php
++++ b/tests/src/Kernel/Drupal6EmfieldMigrationTest.php
+@@ -40,7 +40,7 @@ class Drupal6EmfieldMigrationTest extends MigrateDrupal6TestBase {
+     $migrated_vimeo = $this->loadEntityByLabel('Vimeo Example');
+     $migrated_youtube = $this->loadEntityByLabel('YouTube Example');
+     $this->assertEquals('https://vimeo.com/21681203', $migrated_vimeo->field_video->value);
+-    $this->assertEquals('https://www.youtube.com/watch?v=XgYu7-DQjDQ', $migrated_youtube->field_video->value);
++    $this->assertEquals('https://www.youtube-nocookie.com/watch?v=XgYu7-DQjDQ', $migrated_youtube->field_video->value);
+   }
+ 
+ }
+diff --git a/tests/src/Kernel/Drupal7MigrationTest.php b/tests/src/Kernel/Drupal7MigrationTest.php
+index b18bf1e..daecd86 100644
+--- a/tests/src/Kernel/Drupal7MigrationTest.php
++++ b/tests/src/Kernel/Drupal7MigrationTest.php
+@@ -69,7 +69,7 @@ class Drupal7MigrationTest extends MigrateDrupal7TestBase {
+     $migrated_vimeo = $this->loadEntityByLabel('Vimeo Example');
+     $migrated_youtube = $this->loadEntityByLabel('YouTube Example');
+     $this->assertEquals('https://vimeo.com/21681203', $migrated_vimeo->field_video->value);
+-    $this->assertEquals('https://www.youtube.com/watch?v=XgYu7-DQjDQ', $migrated_youtube->field_video->value);
++    $this->assertEquals('https://www.youtube-nocookie.com/watch?v=XgYu7-DQjDQ', $migrated_youtube->field_video->value);
+   }
+ 
+ }
+diff --git a/tests/src/Kernel/FieldOutputTest.php b/tests/src/Kernel/FieldOutputTest.php
+index e3bf7f2..db9245c 100644
+--- a/tests/src/Kernel/FieldOutputTest.php
++++ b/tests/src/Kernel/FieldOutputTest.php
+@@ -22,7 +22,7 @@ class FieldOutputTest extends KernelTestBase {
+   public function renderedFieldTestCases() {
+     return [
+       'YouTube: Thumbnail' => [
+-        'https://www.youtube.com/watch?v=fdbFVWupSsw',
++        'https://www.youtube-nocookie.com/watch?v=fdbFVWupSsw',
+         [
+           'type' => 'video_embed_field_thumbnail',
+           'settings' => [],
+@@ -33,7 +33,7 @@ class FieldOutputTest extends KernelTestBase {
+         ],
+       ],
+       'YouTube: Thumbnail With Image Style' => [
+-        'https://www.youtube.com/watch?v=fdbFVWupSsw',
++        'https://www.youtube-nocookie.com/watch?v=fdbFVWupSsw',
+         [
+           'type' => 'video_embed_field_thumbnail',
+           'settings' => [
+@@ -47,7 +47,7 @@ class FieldOutputTest extends KernelTestBase {
+         ],
+       ],
+       'YouTube: Embed Code' => [
+-        'https://www.youtube.com/watch?v=fdbFVWupSsw',
++        'https://www.youtube-nocookie.com/watch?v=fdbFVWupSsw',
+         [
+           'type' => 'video_embed_field_video',
+           'settings' => [
+@@ -67,7 +67,7 @@ class FieldOutputTest extends KernelTestBase {
+           'children' => [
+             '#type' => 'video_embed_iframe',
+             '#provider' => 'youtube',
+-            '#url' => 'https://www.youtube.com/embed/fdbFVWupSsw',
++            '#url' => 'https://www.youtube-nocookie.com/embed/fdbFVWupSsw',
+             '#query' => [
+               'autoplay' => '1',
+               'start' => '0',
+@@ -88,7 +88,7 @@ class FieldOutputTest extends KernelTestBase {
+         ],
+       ],
+       'YouTube: Time-index Embed Code' => [
+-        'https://www.youtube.com/watch?v=fdbFVWupSsw&t=100',
++        'https://www.youtube-nocookie.com/watch?v=fdbFVWupSsw&t=100',
+         [
+           'type' => 'video_embed_field_video',
+           'settings' => [
+@@ -108,7 +108,7 @@ class FieldOutputTest extends KernelTestBase {
+           'children' => [
+             '#type' => 'video_embed_iframe',
+             '#provider' => 'youtube',
+-            '#url' => 'https://www.youtube.com/embed/fdbFVWupSsw',
++            '#url' => 'https://www.youtube-nocookie.com/embed/fdbFVWupSsw',
+             '#query' => [
+               'autoplay' => '1',
+               'start' => '100',
+@@ -129,7 +129,7 @@ class FieldOutputTest extends KernelTestBase {
+         ],
+       ],
+       'YouTube: Language Specified Embed Code' => [
+-        'https://www.youtube.com/watch?v=fdbFVWupSsw&hl=fr',
++        'https://www.youtube-nocookie.com/watch?v=fdbFVWupSsw&hl=fr',
+         [
+           'type' => 'video_embed_field_video',
+           'settings' => [
+@@ -149,7 +149,7 @@ class FieldOutputTest extends KernelTestBase {
+           'children' => [
+             '#type' => 'video_embed_iframe',
+             '#provider' => 'youtube',
+-            '#url' => 'https://www.youtube.com/embed/fdbFVWupSsw',
++            '#url' => 'https://www.youtube-nocookie.com/embed/fdbFVWupSsw',
+             '#query' => [
+               'autoplay' => '1',
+               'start' => '0',
+@@ -467,7 +467,7 @@ class FieldOutputTest extends KernelTestBase {
+         ],
+       ],
+       'YouTube Playlist' => [
+-        'https://www.youtube.com/watch?v=xoJH3qZwsHc&list=PLpeDXSh4nHjQCIZmkxg3VSdpR5e87X5eB',
++        'https://www.youtube-nocookie.com/watch?v=xoJH3qZwsHc&list=PLpeDXSh4nHjQCIZmkxg3VSdpR5e87X5eB',
+         [
+           'type' => 'video_embed_field_video',
+           'settings' => [
+@@ -487,7 +487,7 @@ class FieldOutputTest extends KernelTestBase {
+           'children' => [
+             '#type' => 'video_embed_iframe',
+             '#provider' => 'youtube_playlist',
+-            '#url' => 'https://www.youtube.com/embed/videoseries',
++            '#url' => 'https://www.youtube-nocookie.com/embed/videoseries',
+             '#query' => [
+               'list' => 'PLpeDXSh4nHjQCIZmkxg3VSdpR5e87X5eB',
+             ],
+diff --git a/tests/src/Kernel/VideoEmbedIFrameTest.php b/tests/src/Kernel/VideoEmbedIFrameTest.php
+index 8a28d50..8754ff2 100644
+--- a/tests/src/Kernel/VideoEmbedIFrameTest.php
++++ b/tests/src/Kernel/VideoEmbedIFrameTest.php
+@@ -26,28 +26,28 @@ class VideoEmbedIFrameTest extends KernelTestBase {
+       'URL' => [
+         [
+           '#type' => 'video_embed_iframe',
+-          '#url' => 'https://www.youtube.com/embed/fdbFVWupSsw',
++          '#url' => 'https://www.youtube-nocookie.com/embed/fdbFVWupSsw',
+         ],
+-        '<iframe src="https://www.youtube.com/embed/fdbFVWupSsw"></iframe>',
++        '<iframe src="https://www.youtube-nocookie.com/embed/fdbFVWupSsw"></iframe>',
+       ],
+       'URL, query' => [
+         [
+           '#type' => 'video_embed_iframe',
+-          '#url' => 'https://www.youtube.com/embed/fdbFVWupSsw',
++          '#url' => 'https://www.youtube-nocookie.com/embed/fdbFVWupSsw',
+           '#query' => ['autoplay' => '1'],
+         ],
+-        '<iframe src="https://www.youtube.com/embed/fdbFVWupSsw?autoplay=1"></iframe>',
++        '<iframe src="https://www.youtube-nocookie.com/embed/fdbFVWupSsw?autoplay=1"></iframe>',
+       ],
+       'URL, query, attributes' => [
+         [
+           '#type' => 'video_embed_iframe',
+-          '#url' => 'https://www.youtube.com/embed/fdbFVWupSsw',
++          '#url' => 'https://www.youtube-nocookie.com/embed/fdbFVWupSsw',
+           '#query' => ['autoplay' => '1'],
+           '#attributes' => [
+             'width' => '100',
+           ],
+         ],
+-        '<iframe width="100" src="https://www.youtube.com/embed/fdbFVWupSsw?autoplay=1"></iframe>',
++        '<iframe width="100" src="https://www.youtube-nocookie.com/embed/fdbFVWupSsw?autoplay=1"></iframe>',
+       ],
+       'Query' => [
+         [
