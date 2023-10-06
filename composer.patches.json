@@ -11,6 +11,6 @@
         },
         "drupal/field_css": {
             "Notice: Undefined index: field_MY_css ifield_css Traits CssTrait::itemPrefixes": "https://www.drupal.org/files/issues/2023-04-07/3280478-6.patch"
-        },
+        }
     }
 }
