@@ -8,6 +8,9 @@
         },
         "drupal/video_embed_field" : {
             "Youtube no-cockie URL" : "https://raw.githubusercontent.com/szeberli/ct_composer-patches/main/video_embed_field-youtube-nocookie_v1.patch"
-        }
+        },
+        "drupal/field_css": {
+            "Notice: Undefined index: field_MY_css ifield_css Traits CssTrait::itemPrefixes": "https://www.drupal.org/files/issues/2023-04-07/3280478-6.patch"
+        },
     }
 }
