@@ -14,6 +14,9 @@
         },
         "drupal/conditional_fields": {
           "'Controlled by' fields inside a Paragraph don't work": "https://www.drupal.org/files/issues/2023-09-28/2902164-149.patch"
+        },
+        "drupal/field_css": {
+          "Deprecated function: Creation of dynamic property": "https://www.drupal.org/files/issues/2024-03-12/field_css_deprecated_function.patch"
         }
     }
 }
