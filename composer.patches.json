@@ -17,7 +17,7 @@
         },
         "drupal/conditional_fields": {
           "'Controlled by' fields inside a Paragraph don't work": "https://www.drupal.org/files/issues/2023-09-28/2902164-149.patch",
-          "TypeError: Drupal\conditional_fields\ConditionalFieldsFormHelper::elementAddProperty()": "https://www.drupal.org/files/issues/2023-12-21/Issue-3410108-TypeError-fixes.patch"
+          "TypeError: Drupal conditional_fields ConditionalFieldsFormHelper::elementAddProperty()": "https://www.drupal.org/files/issues/2023-12-21/Issue-3410108-TypeError-fixes.patch"
         }
     }
 }
