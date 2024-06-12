@@ -13,7 +13,7 @@
             "warmer_views_mode -> QueryInterface::accessCheck() is missing": "https://www.drupal.org/files/issues/2023-10-06/3392161-accessCheck-is-missing.patch"
         },
         "drupal/field_css": {
-          "Deprecated function: Creation of dynamic property": "https://www.drupal.org/files/issues/2024-03-12/field_css_deprecated_function.patch"
+          "Deprecated function: Creation of dynamic property": "https://www.drupal.org/files/issues/2024-05-02/3427254-2.patch"
         },
         "drupal/conditional_fields": {
           "'Controlled by' fields inside a Paragraph don't work": "https://www.drupal.org/files/issues/2023-09-28/2902164-149.patch",
