@@ -14,11 +14,7 @@
         },
         "drupal/field_css": {
           "Deprecated function: Creation of dynamic property": "https://www.drupal.org/files/issues/2024-05-02/3427254-2.patch"
-        },
-        "drupal/conditional_fields": {
-          "'Controlled by' fields inside a Paragraph don't work": "https://www.drupal.org/files/issues/2023-09-28/2902164-149.patch",
-          "TypeError: Drupal conditional_fields ConditionalFieldsFormHelper::elementAddProperty()": "https://www.drupal.org/files/issues/2023-12-21/Issue-3410108-TypeError-fixes.patch"
-        },
+        }
         "drupal/themable_forms": {
           "nvalidArgumentException: title is an invalid render array key. Value should be an array but got a string": "https://www.drupal.org/files/issues/2024-07-04/themable_forms-nvalidArgumentException-3459105.patch"
         }
