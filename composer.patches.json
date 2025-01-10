@@ -12,9 +12,6 @@
         "drupal/warmer_view_mode": {
             "warmer_views_mode -> QueryInterface::accessCheck() is missing": "https://www.drupal.org/files/issues/2023-10-06/3392161-accessCheck-is-missing.patch"
         },
-        "drupal/field_css": {
-          "Deprecated function: Creation of dynamic property": "https://www.drupal.org/files/issues/2024-05-02/3427254-2.patch"
-        },
         "drupal/themable_forms": {
           "nvalidArgumentException: title is an invalid render array key. Value should be an array but got a string": "https://www.drupal.org/files/issues/2024-07-04/themable_forms-nvalidArgumentException-3459105.patch"
         }
