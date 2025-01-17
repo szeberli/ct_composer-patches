@@ -14,6 +14,10 @@
         },
         "drupal/themable_forms": {
           "nvalidArgumentException: title is an invalid render array key. Value should be an array but got a string": "https://www.drupal.org/files/issues/2024-07-04/themable_forms-nvalidArgumentException-3459105.patch"
+        },
+        "drupal/responsive_menu": {
+          "nUncaught TypeError: Drupal.toolbar is undefined": "https://www.drupal.org/files/issues/2023-11-29/3404945-2.patch"
         }
+        
     }
 }
