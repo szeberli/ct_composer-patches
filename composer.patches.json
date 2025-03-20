@@ -17,6 +17,9 @@
         },
         "drupal/responsive_menu": {
           "nUncaught TypeError: Drupal.toolbar is undefined": "https://www.drupal.org/files/issues/2023-11-29/3404945-2.patch"
+        },
+        "drupal/gin": {
+            "GIN - Widget for multivalued file field overlap": "https://www.drupal.org/files/issues/2024-12-13/3493765-widget-for-multivalued-file-field-overlap_0.patch"
         }
         
     }
