@@ -19,8 +19,7 @@
           "nUncaught TypeError: Drupal.toolbar is undefined": "https://www.drupal.org/files/issues/2023-11-29/3404945-2.patch"
         },
         "drupal/gin": {
-            "GIN - Widget for multivalued file field overlap": "https://git.drupalcode.org/project/gin/-/merge_requests/608.diff"
+            "GIN - Widget for multivalued file field overlap": "https://git.drupalcode.org/project/gin/-/merge_requests/611.diff"
         }
-        
     }
 }
