@@ -1,8 +1,5 @@
 {
     "patches": {
-        "drupal/chosen": {
-            "Chosen not working with Details": "https://git.drupalcode.org/project/chosen/-/merge_requests/9.diff"
-        },
         "drupal/image_widget_crop": {
             "Crop widget not adjusting crop box when crop is applied": "https://www.drupal.org/files/issues/2021-06-09/crop_widget_not_adjusting_to_existing_crop-3214365-9.patch"
         },
