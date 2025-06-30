@@ -1,0 +1,157 @@
++++ block_field/src/Plugin/block_field/BlockFieldSelection/CategoriesAndBlocks.php	2025-06-26 16:39:35.263854417 +0200
+@@ -0,0 +1,155 @@
++<?php
++
++namespace Drupal\block_field\Plugin\block_field\BlockFieldSelection;
++
++use Drupal\block_field\BlockFieldSelectionBase;
++use Drupal\Core\DependencyInjection\DependencySerializationTrait;
++use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\StringTranslation\StringTranslationTrait;
++
++/**
++ * Provides a 'categories' BlockFieldSection.
++ *
++ * @BlockFieldSelection(
++ *   id = "categories_and_blocks",
++ *   label = @Translation("Categories & Blocks"),
++ * )
++ */
++class CategoriesAndBlocks extends BlockFieldSelectionBase {
++
++  use DependencySerializationTrait;
++  use StringTranslationTrait;
++
++  /**
++   * {@inheritdoc}
++   */
++  public function defaultConfiguration() {
++    return [
++      'plugin_ids' => [],
++      'categories' => [],
++    ] + parent::defaultConfiguration();
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
++    $test = $this->getConfiguration();
++    $form = parent::buildConfigurationForm($form, $form_state);
++    /** @var \Drupal\block_field\BlockFieldManagerInterface $block_field_manager */
++    $block_field_manager = \Drupal::service('block_field.manager');
++
++    $definitions = $block_field_manager->getBlockDefinitions();
++    $categories = $block_field_manager->getBlockCategories();
++
++    $current_category = (string)reset($definitions)['category'] ;
++
++    $form['categories_and_blocks'] = [
++      '#type' => 'details',
++      '#title' => $this->t('Categories & Blocks'),
++      '#description' => $this->t('Please select available categories & individual blocks.'),
++      '#open' => !empty($this->getConfiguration()['plugin_ids']) && !empty($this->getConfiguration()['categories']),
++      '#process' => [[$this, 'formProcessMergeParent']],
++    ];
++
++    foreach ($definitions as $plugin_id => $definition) {
++      if ($definition['category'] != $current_category) {
++        $default_value = array_intersect(array_keys($options), array_keys($this->getConfiguration()['plugin_ids']));
++
++        $form['categories_and_blocks']['categories'][$current_category][$current_category] = [
++          '#type' => 'checkbox',
++          '#title' => $current_category,
++          '#return_value' => 1,
++          '#default_value' => !empty($this->getConfiguration()['categories']) ? !empty($this->getConfiguration()['categories'][$current_category]) : 1,
++          '#parents' => [
++            'settings',
++            'selection_settings',
++            'categories',
++            $current_category
++          ],
++        ];
++        $form['categories_and_blocks']['categories'][$current_category]['plugin_ids'] = [
++          '#type' => 'fieldgroup',
++          '#states' => [
++            'visible' => [
++              ':input[name="settings[selection_settings][categories][' . $current_category . ']"]' => ['checked' => FALSE],
++            ],
++          ],
++        ];
++        $form['categories_and_blocks']['categories'][$current_category]['plugin_ids']['plugin_ids'] = [
++          '#type' => 'checkboxes',
++          '#options' => $options,
++          '#parents' => [
++            'settings',
++            'selection_settings',
++            'plugin_ids',
++            $current_category
++          ],
++          '#default_value' => array_combine($default_value, $default_value),
++        ];
++        $current_category = (string) $definition['category'];
++        $options = [];
++      }
++      $options[$plugin_id] = $definition['admin_label'] . ' (' . $plugin_id . ')';
++    }
++    return $form;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
++    $plugin_ids = $form_state->getValue(['settings','selection_settings','plugin_ids']);
++    $values = [];
++    //if $plugin_ids is not empty and multidimensional, flatten the array
++    if(isset($plugin_ids) && is_array($plugin_ids[array_key_first($plugin_ids)])){
++      $values = array_merge(...array_values($plugin_ids));
++    }
++    $values = array_filter($values);
++    $form_state->setValue(['settings','selection_settings','plugin_ids'], $values);
++  }
++
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getReferenceableBlockDefinitions() {
++    return array_merge(
++      $this->getReferenceableBlockDefinitionsByCategory(),
++      $this->getReferenceableBlockDefinitionsByPluginIDs()
++    );
++  }
++
++
++  /**
++   * Returns filtered block definitions based on category setting.
++   *
++   * @return array
++   *   An array of filtered block definitions.
++   */
++  public function getReferenceableBlockDefinitionsByCategory() {
++    $block_field_manager = \Drupal::service('block_field.manager');
++    $definitions = $block_field_manager->getBlockDefinitions();
++    if (!empty($this->getConfiguration()['categories'])) {
++      $categories = array_filter($this->getConfiguration()['categories']);
++      $definitions = array_filter($definitions, function ($definition, $key) use ($categories) {
++        return isset($categories[(string) $definition['category']]);
++      }, ARRAY_FILTER_USE_BOTH);
++    }
++    return $definitions;
++  }
++
++  /**
++   * Returns filtered block definitions based on plugin_id setting.
++   *
++   * @return array
++   *   An array of filtered block definitions.
++   */
++  public function getReferenceableBlockDefinitionsByPluginIDs() {
++    $block_field_manager = \Drupal::service('block_field.manager');
++    $definitions = $block_field_manager->getBlockDefinitions();
++    $values = $this->getConfiguration()['plugin_ids'];
++    $values = array_combine($values, $values);
++    return array_intersect_key($definitions, $values);
++  }
++}
