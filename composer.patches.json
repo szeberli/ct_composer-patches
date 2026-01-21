@@ -15,9 +15,6 @@
         "drupal/responsive_menu": {
           "nUncaught TypeError: Drupal.toolbar is undefined": "https://www.drupal.org/files/issues/2023-11-29/3404945-2.patch"
         },
-        "drupal/gin": {
-            "Paragraph table shrink": "https://git.drupalcode.org/project/gin/-/merge_requests/611.diff"
-        },
         "drupal/field_formatter_class":{
             "WSOD: Call to undefined method ...::getEntity()": "https://git.drupalcode.org/project/field_formatter_class/-/merge_requests/10.diff"
         }
