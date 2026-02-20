@@ -1,8 +1,9 @@
-diff --git a/src/Plugin/Field/FieldFormatter/CssFormatter.php b/src/Plugin/Field/FieldFormatter/CssFormatter.php
-index 0000000..0000000 100644
---- a/src/Plugin/Field/FieldFormatter/CssFormatter.php
-+++ b/src/Plugin/Field/FieldFormatter/CssFormatter.php
-@@ -189,7 +189,14 @@ class CssFormatter extends FormatterBase {
+--- /tmp/CssFormatter.php.orig  2024-11-22 18:44:20.000000000 +0100
++++ src/Plugin/Field/FieldFormatter/CssFormatter.php    2026-02-20 16:56:19.933199920 +0100
+@@ -189,7 +189,14 @@
+       'layout_builder.overrides.*',
+     ];
+     foreach ($routes as $item) {
 -      if (preg_match("/$item/", $this->currentRouteMatch->getRouteName())) {
 +      // On CLI/Cron the current route name can be NULL.
 +      $route_name = $this->currentRouteMatch->getRouteName() ?? '';
@@ -11,6 +12,7 @@ index 0000000..0000000 100644
 +      // and delimiter issues.
 +      $pattern = '/' . preg_quote((string) $item, '/') . '/';
 +
-+      if ($route_name !== '' && preg_match($pattern, (string) $route_name)) {
-         // ...
++       if ($route_name !== '' && preg_match($pattern, (string) $route_name)) {
+         $location = 'body';
+         break;
        }
