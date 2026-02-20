@@ -1,0 +1,16 @@
+diff --git a/src/Plugin/Field/FieldFormatter/CssFormatter.php b/src/Plugin/Field/FieldFormatter/CssFormatter.php
+index 0000000..0000000 100644
+--- a/src/Plugin/Field/FieldFormatter/CssFormatter.php
++++ b/src/Plugin/Field/FieldFormatter/CssFormatter.php
+@@ -189,7 +189,14 @@ class CssFormatter extends FormatterBase {
+-      if (preg_match("/$item/", $this->currentRouteMatch->getRouteName())) {
++      // On CLI/Cron the current route name can be NULL.
++      $route_name = $this->currentRouteMatch->getRouteName() ?? '';
++
++      // $item is treated as plain text (not a regex) to avoid regex injection
++      // and delimiter issues.
++      $pattern = '/' . preg_quote((string) $item, '/') . '/';
++
++      if ($route_name !== '' && preg_match($pattern, (string) $route_name)) {
+         // ...
+       }
