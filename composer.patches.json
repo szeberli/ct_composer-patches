@@ -20,6 +20,6 @@
         },
         "drupal/field_css":{
             "Fix NULL route name + safe matching in CssFormatter": "https://raw.githubusercontent.com/szeberli/ct_composer-patches/refs/heads/main/field_css-route-name-null-safe.patch"
-        },
+        }
     }
 }
